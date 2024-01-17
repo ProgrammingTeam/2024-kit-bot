@@ -13,7 +13,9 @@ public class ShootCom extends Command {
   /** Creates a new ShooterCom. */
   public ShootCom(ShooterSub Shooter, double ShootSpd) {
 m_Shooter = Shooter;
-ShooterSpeed = ShootSpd;    // Use addRequirements() here to declare subsystem dependencies.
+ShooterSpeed = ShootSpd;    
+addRequirements(Shooter);
+// Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -22,7 +24,9 @@ ShooterSpeed = ShootSpd;    // Use addRequirements() here to declare subsystem d
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_Shooter.setLaunchMotors(0, ShooterSpeed);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

@@ -9,6 +9,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.DriveCom;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCom;
+import frc.robot.commands.ShootCom;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.ShooterSub;
@@ -54,6 +55,7 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
 m_driverController.y().whileTrue(new IntakeCom(m_ShooterSub, 0.75));
 m_driverController.a().whileTrue(new IntakeCom(m_ShooterSub, -0.75));
+m_driverController.b().whileTrue(new ShootCom(m_ShooterSub, 0.75));
 m_driverController.y().whileFalse(new IntakeCom(m_ShooterSub, 0));
 m_driverController.a().whileFalse(new IntakeCom(m_ShooterSub, 0));
 
