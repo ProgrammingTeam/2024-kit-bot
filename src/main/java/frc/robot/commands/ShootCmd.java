@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.MotorConstants;
 import frc.robot.subsystems.ShooterSub;
 
-public class AutoShoot extends Command {
+public class ShootCmd extends Command {
   ShooterSub Shooter;
   ShootModes ShootSelection;
   double BottomMotor;
   double TopMotor;
 
-  public AutoShoot(ShooterSub ShooterSystem, ShootModes Mode) {
+  public ShootCmd(ShooterSub ShooterSystem, ShootModes Mode) {
     ShootSelection = Mode;
     Shooter = ShooterSystem;
     addRequirements(Shooter);
@@ -54,6 +54,10 @@ public class AutoShoot extends Command {
       // BottomMotor = -MotorConstants.InteriorShooterSpeed;
       // TopMotor = 0;
       // break;
+      case DONOTHING:
+        BottomMotor = 0;
+        TopMotor = 0;
+        break;
 
       default:
         BottomMotor = 0;
@@ -78,6 +82,7 @@ public class AutoShoot extends Command {
   public enum ShootModes {
     SpinUp,
     Shoot,
-    Load;
+    Load,
+    DONOTHING;
   }
 }

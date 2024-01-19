@@ -5,11 +5,12 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ShootCmd;
 import frc.robot.commands.Autonomous;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveCom;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeCom;
+import frc.robot.commands.ShootCmd.ShootModes;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.ShooterSub;
@@ -41,7 +42,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     m_DriveSub.setDefaultCommand(new DriveCom(m_DriveSub, m_driverController));
-
+    m_ShooterSub.setDefaultCommand(new ShootCmd(m_ShooterSub, ShootModes.DONOTHING));
     configureBindings();
   }
 
@@ -63,10 +64,9 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
-    m_driverController.y().whileTrue(new IntakeCom(m_ShooterSub, 0.75));
-    m_driverController.a().whileTrue(new IntakeCom(m_ShooterSub, -0.75));
-    m_driverController.y().whileFalse(new IntakeCom(m_ShooterSub, 0));
-    m_driverController.a().whileFalse(new IntakeCom(m_ShooterSub, 0));
+    m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
+    m_driverController.a().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
+    m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is
     // pressed,
