@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ShooterSub;
@@ -15,7 +16,10 @@ public class Autonomous extends SequentialCommandGroup {
   public Autonomous(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
 
     addCommands(new AutoShoot(m_ShooterSub, 3),
-    new AutoDrive(m_DriveTrain, 5, true)
+    Commands.waitSeconds(3),
+    new AutoShoot(m_ShooterSub, 1),
+    Commands.waitSeconds(0.5),
+    new AutoDrive(m_DriveTrain, 5, false)
     );
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();

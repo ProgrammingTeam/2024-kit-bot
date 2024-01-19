@@ -16,11 +16,11 @@ public class AutoDrive extends Command {
   double FLPosition;
   boolean MetDistance;
   boolean ForwardOrBackward;
-  int DriveDistance;
+  double DriveDistEncoderRotations;
 
-  public AutoDrive(DriveTrain m_DriveTrain, int TotalDistance, boolean Forward) {
+  public AutoDrive(DriveTrain m_DriveTrain, double TotalDistanceIn, boolean Forward) {
     DriveSub = m_DriveTrain;
-    DriveDistance = TotalDistance;
+    DriveDistEncoderRotations = TotalDistanceIn / (MotorConstants.WheelDiameter * Math.PI * MotorConstants.GearRatio);
     ForwardOrBackward = Forward;
 
     addRequirements(DriveSub);
@@ -39,14 +39,14 @@ public class AutoDrive extends Command {
     FLPosition = DriveSub.FLEncoderPoll;
 
     if (ForwardOrBackward == true) {
-      if (DriveDistance <= FLPosition) {
+      if (DriveDistEncoderRotations <= FLPosition) {
         DriveSub.setMotors(0, 0);
         MetDistance = true;
       } else {
         DriveSub.setMotors(MotorConstants.LeftAutoSpeed, MotorConstants.RightAutoSpeed);
       }
     } else if (ForwardOrBackward == false) {
-      if (DriveDistance <= FLPosition) {
+      if (DriveDistEncoderRotations <= FLPosition) {
         DriveSub.setMotors(0, 0);
         MetDistance = true;
       } else {

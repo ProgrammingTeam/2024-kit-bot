@@ -31,5 +31,8 @@ public static final int upperShooterID = 0;
     
     public static final double LeftAutoSpeed = 0.2;
     public static final double RightAutoSpeed = 0.2;
+
+    public static final double GearRatio = 10.71;
+    public static final int WheelDiameter = 6;
   }
 }
