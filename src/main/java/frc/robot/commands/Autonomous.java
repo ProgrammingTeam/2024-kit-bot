@@ -5,17 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ShooterSub;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Autonomous extends SequentialCommandGroup {
-  public Autonomous(ShooterSub m_ShooterSub) {
+  public Autonomous(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
 
-    addCommands(new AutoShoot(m_ShooterSub, 3)
-    
-    
+    addCommands(new AutoShoot(m_ShooterSub, 3),
+    new AutoDrive(m_DriveTrain, 5, true)
     );
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
