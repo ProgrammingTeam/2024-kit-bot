@@ -7,13 +7,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.DriveTrain;
 
 public class DriveCom extends Command {
-   private final DriveSub m_Drive;
+   private final DriveTrain m_Drive;
    private final CommandXboxController m_xbox; 
   /** Creates a new DriveCom. */
-  public DriveCom(DriveSub drive, CommandXboxController xboxController) {
+  public DriveCom(DriveTrain drive, CommandXboxController xboxController) {
     m_Drive = drive;
     m_xbox = xboxController;
     addRequirements(drive);

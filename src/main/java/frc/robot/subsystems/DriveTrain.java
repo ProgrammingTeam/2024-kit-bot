@@ -5,22 +5,26 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class DriveSub extends SubsystemBase {
+public class DriveTrain extends SubsystemBase {
+  public double FLEncoderPoll;
   CANSparkMax FLMotor = new CANSparkMax(Constants.FLMotorID, MotorType.kBrushless);
   CANSparkMax FRMotor = new CANSparkMax(Constants.FRMotorID, MotorType.kBrushless);
   CANSparkMax RLMotor = new CANSparkMax(Constants.RLMotorID, MotorType.kBrushless);
   CANSparkMax RRMotor = new CANSparkMax(Constants.RRMotorID, MotorType.kBrushless);
-   
+
+  RelativeEncoder RLEncoder = RLMotor.getEncoder();
+
   /** Creates a new DriveSub. */
-  public DriveSub() {
-     FLMotor.follow(RLMotor);
-     FRMotor.follow(RRMotor);
+  public DriveTrain() {
+    FLMotor.follow(RLMotor);
+    FRMotor.follow(RRMotor);
     RRMotor.setInverted(true);
   }
 
@@ -31,6 +35,10 @@ public class DriveSub extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    FLEncoderPoll = RLEncoder.getPosition();
+  }
+
+  public void resetEncoders() {
+    RLEncoder.setPosition(0);
   }
 }

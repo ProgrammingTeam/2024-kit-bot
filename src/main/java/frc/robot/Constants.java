@@ -28,5 +28,8 @@ public static final int upperShooterID = 0;
   public static class MotorConstants {
     public static final double ExteriorShooterSpeed = 0.5;
     public static final double InteriorShooterSpeed = 0.25;
+    
+    public static final double LeftAutoSpeed = 0.2;
+    public static final double RightAutoSpeed = 0.2;
   }
 }
