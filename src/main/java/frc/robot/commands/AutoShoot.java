@@ -10,11 +10,11 @@ import frc.robot.subsystems.ShooterSub;
 
 public class AutoShoot extends Command {
   ShooterSub Shooter;
-  int ShootSelection;
+  ShootModes ShootSelection;
   double BottomMotor;
   double TopMotor;
 
-  public AutoShoot(ShooterSub ShooterSystem, int Mode) {
+  public AutoShoot(ShooterSub ShooterSystem, ShootModes Mode) {
     ShootSelection = Mode;
     Shooter = ShooterSystem;
     addRequirements(Shooter);
@@ -30,30 +30,30 @@ public class AutoShoot extends Command {
   @Override
   public void execute() {
     switch (ShootSelection) {
-      case 1:
+      case Shoot:
         BottomMotor = MotorConstants.InteriorShooterSpeed;
         TopMotor = MotorConstants.ExteriorShooterSpeed;
         break;
-      case 2:
+      case Load:
         BottomMotor = -MotorConstants.InteriorShooterSpeed;
         TopMotor = -MotorConstants.ExteriorShooterSpeed;
         break;
-      case 3:
+      case SpinUp:
         BottomMotor = 0;
         TopMotor = MotorConstants.ExteriorShooterSpeed;
         break;
-      case 4:
-        BottomMotor = MotorConstants.InteriorShooterSpeed;
-        TopMotor = 0;
-        break;
-      case 5:
-        BottomMotor = 0;
-        TopMotor = -MotorConstants.ExteriorShooterSpeed;
-        break;
-      case 6:
-        BottomMotor = -MotorConstants.InteriorShooterSpeed;
-        TopMotor = 0;
-        break;
+      // case 4:
+      // BottomMotor = MotorConstants.InteriorShooterSpeed;
+      // TopMotor = 0;
+      // break;
+      // case 5:
+      // BottomMotor = 0;
+      // TopMotor = -MotorConstants.ExteriorShooterSpeed;
+      // break;
+      // case 6:
+      // BottomMotor = -MotorConstants.InteriorShooterSpeed;
+      // TopMotor = 0;
+      // break;
 
       default:
         BottomMotor = 0;
@@ -73,5 +73,11 @@ public class AutoShoot extends Command {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  public enum ShootModes {
+    SpinUp,
+    Shoot,
+    Load;
   }
 }
