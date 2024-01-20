@@ -64,7 +64,7 @@ public class ShootCmd extends Command {
         TopMotor = 0;
         break;
     }
-    Shooter.setLaunchMotors(MotorConstants.InteriorShooterSpeed, MotorConstants.ExteriorShooterSpeed);
+    Shooter.setLaunchMotors(BottomMotor, TopMotor);
   }
 
   // Called once the command ends or is interrupted.
