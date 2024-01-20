@@ -24,6 +24,7 @@ public static final int FLMotorID = 2;
 public static final int RLMotorID = 3;
 public static final int RRMotorID = 4;
 public static final int upperShooterID = 0;
+public static final int IntakeLimiterSwitch = 7;
 
   public static class MotorConstants {
     public static final double ExteriorShooterSpeed = 0.5;
