@@ -61,17 +61,10 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
     m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
     m_driverController.a().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
     m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is
-    // pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 
   /**
