@@ -7,7 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-
+import java.lang.Math;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -25,12 +25,16 @@ public class DriveTrain extends SubsystemBase {
   public DriveTrain() {
     FLMotor.follow(RLMotor);
     FRMotor.follow(RRMotor);
-    RRMotor.setInverted(true);
+    //RRMotor.setInverted(true);
   }
 
   public void setMotors(double leftSpeed, double rightSpeed) {
-    RLMotor.set(leftSpeed);
-    RRMotor.set(rightSpeed);
+    if (Math.abs(leftSpeed) > 0.1) {
+      RLMotor.set(leftSpeed);
+    }
+    if (Math.abs(rightSpeed) > 0.1) {
+      RRMotor.set(-rightSpeed);
+    }
   }
 
   @Override

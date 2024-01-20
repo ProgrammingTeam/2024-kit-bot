@@ -20,7 +20,7 @@ public class ShooterSub extends SubsystemBase {
   }
   
   public void setLaunchMotors(double lowerShooterSpeed, double upperShooterSpeed) {
-    if(IntakeLimiterSwitch.get() == false) {
+    if(IntakeLimiterSwitch.get() == true) {
       lowerShooter.set(lowerShooterSpeed);
       upperShooter.set(upperShooterSpeed);
     } else {
