@@ -7,19 +7,22 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterSub extends SubsystemBase {
   CANSparkMax upperShooter = new CANSparkMax(Constants.upperShooterID, MotorType.kBrushless);
   CANSparkMax lowerShooter = new CANSparkMax(Constants.lowerShooterID, MotorType.kBrushless);
+  DigitalInput IntakeLimiterSwitch = new DigitalInput(Constants.IntakeLimiterSwitch);
   /** Creates a new LaunchSub. */
   public ShooterSub() {
   }
   
   public void setLaunchMotors(double lowerShooterSpeed, double upperShooterSpeed) {
-    lowerShooter.set(lowerShooterSpeed);
-    upperShooter.set(upperShooterSpeed);
+    if(IntakeLimiterSwitch.get() == false) 
+      lowerShooter.set(lowerShooterSpeed);
+      upperShooter.set(upperShooterSpeed);
   }
   
   @Override
