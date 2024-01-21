@@ -64,7 +64,7 @@ public class RobotContainer {
     m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
     m_driverController.a().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
     m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
-
+    m_driverController.x().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.AmpShot));
   }
 
   /**

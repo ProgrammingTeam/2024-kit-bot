@@ -7,6 +7,7 @@ import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveCom extends Command {
@@ -29,8 +30,8 @@ public class DriveCom extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Drive.setMotors((Math.signum(-m_xbox.getRawAxis(1)) * (-m_xbox.getRawAxis(1) * -m_xbox.getRawAxis(1))), 
-                      (Math.signum(-m_xbox.getRawAxis(5)) * (-m_xbox.getRawAxis(5) * -m_xbox.getRawAxis(5))));
+    m_Drive.setMotors((Math.signum(-m_xbox.getRawAxis(1)) * Constants.MotorConstants.MotorSpeedControler *  (-m_xbox.getRawAxis(1) * -m_xbox.getRawAxis(1))), 
+                      (Math.signum(-m_xbox.getRawAxis(5)) * Constants.MotorConstants.MotorSpeedControler * (-m_xbox.getRawAxis(5) * -m_xbox.getRawAxis(5))));
   }
 
   // Called once the command ends or is interrupted.

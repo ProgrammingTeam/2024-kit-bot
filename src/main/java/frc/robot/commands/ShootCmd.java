@@ -42,10 +42,10 @@ public class ShootCmd extends Command {
         BottomMotor = 0;
         TopMotor = MotorConstants.ExteriorShooterSpeed;
         break;
-      // case 4:
-      // BottomMotor = MotorConstants.InteriorShooterSpeed;
-      // TopMotor = 0;
-      // break;
+      case AmpShot:
+      BottomMotor = 0.16;
+      TopMotor = 0.16;
+      break;
 
       case DONOTHING:
         BottomMotor = 0;
@@ -76,6 +76,7 @@ public class ShootCmd extends Command {
     SpinUp,
     Shoot,
     Load,
+    AmpShot,
     DONOTHING;
   }
 }

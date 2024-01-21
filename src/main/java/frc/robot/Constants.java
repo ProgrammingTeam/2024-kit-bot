@@ -35,5 +35,6 @@ public static final int IntakeLimiterSwitch = 7;
 
     public static final double GearRatio = 10.71;
     public static final int WheelDiameter = 6;
+    public static final double MotorSpeedControler = 0.3;
   }
 }
