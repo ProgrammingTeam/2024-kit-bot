@@ -6,14 +6,15 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ShootCmd;
-import frc.robot.commands.Autonomous;
-import frc.robot.commands.Autos;
+import frc.robot.commands.autos.*;
 import frc.robot.commands.DriveCom;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShootCmd.ShootModes;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.ShooterSub;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -32,6 +33,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveTrain m_DriveSub = new DriveTrain();
   private final ShooterSub m_ShooterSub = new ShooterSub();
+  private final SendableChooser<AutoSelector> autoChooser = new SendableChooser<>();
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(
       OperatorConstants.kDriverControllerPort);
@@ -43,6 +45,12 @@ public class RobotContainer {
     // Configure the trigger bindings
     m_DriveSub.setDefaultCommand(new DriveCom(m_DriveSub, m_driverController));
     m_ShooterSub.setDefaultCommand(new ShootCmd(m_ShooterSub, ShootModes.DONOTHING));
+    
+  
+    autoChooser.setDefaultOption("Nothing", AutoSelector.DoNothing);
+    autoChooser.addOption("Shoot n Drive", AutoSelector.ShootDriveAuto);
+    autoChooser.addOption("Driving Back", AutoSelector.BackAuto);
+    SmartDashboard.putData(autoChooser);
     configureBindings();
   }
 
@@ -74,6 +82,18 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return new Autonomous(m_DriveSub, m_ShooterSub);
+    switch (autoChooser.getSelected()) {
+      case ShootDriveAuto:
+        return new ShootDriveAuto(m_DriveSub, m_ShooterSub);
+      
+      case BackAuto:
+        return new BackAutoDrive(m_DriveSub, m_ShooterSub);
+      
+      case DoNothing:
+        return new DoNothing();
+      default:
+        return new DoNothing();
+    }
+    
   }
 }
