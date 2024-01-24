@@ -17,12 +17,24 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
 
-public static final int lowerShooterID = 5;
-public static final int upperShooterkoID = 6;
-public static final int FRMotorID = 1;
+public static final int FRMotorID = 4;
 public static final int FLMotorID = 2;
 public static final int RLMotorID = 3;
-public static final int RRMotorID = 4;
-public static final int upperShooterID = 0;
+public static final int RRMotorID = 5;
+public static final int lowerShooterID = 6;
+public static final int upperShooterID = 7;
+public static final int IntakeLimiterSwitch = 7;
 
+  public static class MotorConstants {
+    public static final double ExteriorShooterSpeed = 1.0;
+    public static final double InteriorShooterSpeed = 0.75;
+    public static final double IntakeShooterSpeed = 0.20;
+    
+    public static final double LeftAutoSpeed = 0.2;
+    public static final double RightAutoSpeed = 0.2;
+
+    public static final double GearRatio = 10.71;
+    public static final int WheelDiameter = 6;
+    public static final double MotorSpeedControler = 0.3;
+  }
 }
