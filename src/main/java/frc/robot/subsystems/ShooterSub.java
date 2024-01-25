@@ -15,12 +15,13 @@ public class ShooterSub extends SubsystemBase {
   CANSparkMax upperShooter = new CANSparkMax(Constants.upperShooterID, MotorType.kBrushless);
   CANSparkMax lowerShooter = new CANSparkMax(Constants.lowerShooterID, MotorType.kBrushless);
   DigitalInput IntakeLimiterSwitch = new DigitalInput(Constants.IntakeLimiterSwitch);
+
   /** Creates a new LaunchSub. */
   public ShooterSub() {
   }
-  
+
   public void setLaunchMotors(double lowerShooterSpeed, double upperShooterSpeed) {
-    if(IntakeLimiterSwitch.get() == true) {
+    if (IntakeLimiterSwitch.get() == true) {
       lowerShooter.set(lowerShooterSpeed);
       upperShooter.set(upperShooterSpeed);
     } else {
@@ -30,8 +31,10 @@ public class ShooterSub extends SubsystemBase {
   }
 
   private double clamper(double val, double min, double max) {
-    if (val > max) return max;
-    if (val < min) return min;
+    if (val > max)
+      return max;
+    if (val < min)
+      return min;
     return val;
   }
 

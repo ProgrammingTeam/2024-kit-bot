@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
+
 import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -11,8 +12,9 @@ import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveCom extends Command {
-   private final DriveTrain m_Drive;
-   private final CommandXboxController m_xbox; 
+  private final DriveTrain m_Drive;
+  private final CommandXboxController m_xbox;
+
   /** Creates a new DriveCom. */
   public DriveCom(DriveTrain drive, CommandXboxController xboxController) {
     m_Drive = drive;
@@ -30,13 +32,17 @@ public class DriveCom extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Drive.setMotors((Math.signum(-m_xbox.getRawAxis(1)) * Constants.MotorConstants.MotorSpeedControler *  (-m_xbox.getRawAxis(1) * -m_xbox.getRawAxis(1))), 
-                      (Math.signum(-m_xbox.getRawAxis(5)) * Constants.MotorConstants.MotorSpeedControler * (-m_xbox.getRawAxis(5) * -m_xbox.getRawAxis(5))));
+    m_Drive.setMotors(
+        (Math.signum(-m_xbox.getRawAxis(1)) * Constants.MotorConstants.MotorSpeedControler
+            * (-m_xbox.getRawAxis(1) * -m_xbox.getRawAxis(1))),
+        (Math.signum(-m_xbox.getRawAxis(5)) * Constants.MotorConstants.MotorSpeedControler
+            * (-m_xbox.getRawAxis(5) * -m_xbox.getRawAxis(5))));
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

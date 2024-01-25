@@ -19,7 +19,6 @@ public class BackAutoDrive extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new AutoDrive(m_DriveTrain, 5, false)
-    );
+        new AutoDrive(m_DriveTrain, 5, false));
   }
 }
