@@ -26,7 +26,6 @@ public class ShootDriveAuto extends SequentialCommandGroup {
             new ShootCmd(m_ShooterSub, ShootModes.Shoot),
             Commands.waitSeconds(0.5)),
         new AutoDrive(m_DriveTrain, 5, false));
-    // addCommands(new FooCommand(), new BarCommand());
     addCommands();
   }
 }

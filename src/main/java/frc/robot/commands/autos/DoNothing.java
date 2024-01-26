@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class DoNothing extends SequentialCommandGroup {
   /** Creates a new DoNothing. */
   public DoNothing() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+
     addCommands();
   }
 }

@@ -16,8 +16,6 @@ public class BackAutoDrive extends SequentialCommandGroup {
   /** Creates a new BackAutoDrive. */
   public BackAutoDrive(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
 
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new AutoDrive(m_DriveTrain, 5, false));
   }
