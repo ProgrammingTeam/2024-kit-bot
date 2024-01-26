@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.MotorConstants;
@@ -13,14 +14,14 @@ public class AutoDrive extends Command {
   DriveTrain DriveSub;
   double MaxLeftDis;
   double MaxRightDis;
-  double FLPosition;
+  double RLPosition;
   boolean MetDistance;
   boolean ForwardOrBackward;
   double DriveDistEncoderRotations;
 
   public AutoDrive(DriveTrain m_DriveTrain, double TotalDistanceIn, boolean Forward) {
     DriveSub = m_DriveTrain;
-    DriveDistEncoderRotations = TotalDistanceIn / (MotorConstants.WheelDiameter * Math.PI * MotorConstants.GearRatio);
+    DriveDistEncoderRotations = TotalDistanceIn * MotorConstants.GearRatio / (MotorConstants.WheelDiameter * Math.PI);
     ForwardOrBackward = Forward;
 
     addRequirements(DriveSub);
@@ -36,17 +37,16 @@ public class AutoDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    FLPosition = DriveSub.FLEncoderPoll;
-
+    RLPosition = DriveSub.RLEncoderPoll;
     if (ForwardOrBackward == true) {
-      if (DriveDistEncoderRotations <= FLPosition) {
+      if (DriveDistEncoderRotations <= RLPosition) {
         DriveSub.setMotors(0, 0);
         MetDistance = true;
       } else {
         DriveSub.setMotors(MotorConstants.LeftAutoSpeed, MotorConstants.RightAutoSpeed);
       }
     } else if (ForwardOrBackward == false) {
-      if (DriveDistEncoderRotations <= FLPosition) {
+      if (-DriveDistEncoderRotations >= RLPosition) {
         DriveSub.setMotors(0, 0);
         MetDistance = true;
       } else {

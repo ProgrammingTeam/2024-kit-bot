@@ -9,11 +9,13 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.MotorConstants;
 
 public class DriveTrain extends SubsystemBase {
-  public double FLEncoderPoll;
+  public double RLEncoderPoll;
   CANSparkMax FLMotor = new CANSparkMax(Constants.FLMotorID, MotorType.kBrushless);
   CANSparkMax FRMotor = new CANSparkMax(Constants.FRMotorID, MotorType.kBrushless);
   CANSparkMax RLMotor = new CANSparkMax(Constants.RLMotorID, MotorType.kBrushless);
@@ -35,7 +37,9 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    FLEncoderPoll = RLEncoder.getPosition();
+    RLEncoderPoll = RLEncoder.getPosition();
+    SmartDashboard.putNumber("DriveDistEncoderRotations", 5 / (MotorConstants.WheelDiameter * Math.PI * MotorConstants.GearRatio));
+    SmartDashboard.putNumber("Encoder", RLEncoderPoll);
   }
 
   public void resetEncoders() {
