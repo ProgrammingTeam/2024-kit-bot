@@ -42,14 +42,19 @@ public class AutoDrive extends Command {
       if (DriveDistEncoderRotations <= FLPosition) {
         DriveSub.setMotors(0, 0);
         MetDistance = true;
-      } else {
+      } 
+      
+      else {
         DriveSub.setMotors(MotorConstants.LeftAutoSpeed, MotorConstants.RightAutoSpeed);
       }
-    } else if (ForwardOrBackward == false) {
+    } 
+    else if (ForwardOrBackward == false) {
       if (DriveDistEncoderRotations <= FLPosition) {
         DriveSub.setMotors(0, 0);
         MetDistance = true;
-      } else {
+      } 
+      
+      else {
         DriveSub.setMotors(-MotorConstants.LeftAutoSpeed, -MotorConstants.RightAutoSpeed);
       }
     }
