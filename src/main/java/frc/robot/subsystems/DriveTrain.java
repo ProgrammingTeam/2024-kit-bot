@@ -18,7 +18,7 @@ public class DriveTrain extends SubsystemBase {
   CANSparkMax FRMotor = new CANSparkMax(Constants.FRMotorID, MotorType.kBrushless);
   CANSparkMax RLMotor = new CANSparkMax(Constants.RLMotorID, MotorType.kBrushless);
   CANSparkMax RRMotor = new CANSparkMax(Constants.RRMotorID, MotorType.kBrushless);
-
+  DifferentialDrive Curvature = new DifferentialDrive(RLMotor, RRMotor);
   RelativeEncoder RLEncoder = RLMotor.getEncoder();
 
   /** Creates a new DriveSub. */
@@ -26,11 +26,11 @@ public class DriveTrain extends SubsystemBase {
     FLMotor.follow(RLMotor);
     FRMotor.follow(RRMotor);
     //RRMotor.setInverted(true);
+    
   }
 
   public void setMotors(double leftSpeed, double rightSpeed) {
-    RLMotor.set(leftSpeed);
-    RRMotor.set(-rightSpeed);
+    Curvature.curvatureDrive(leftSpeed, rightSpeed, false);
   }
 
   @Override
