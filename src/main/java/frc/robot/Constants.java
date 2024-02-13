@@ -21,14 +21,26 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
 
-  public static final int FRMotorID = 4;
-  public static final int FLMotorID = 2;
-  public static final int RLMotorID = 3;
-  public static final int RRMotorID = 5;
-  public static final int lowerShooterID = 6;
-  public static final int upperShooterID = 7;
-  public static final int IntakeLimiterSwitch = 7;
 
+public static final int FRMotorID = 4;
+public static final int FLMotorID = 2;
+public static final int RLMotorID = 3;
+public static final int RRMotorID = 5;
+public static final int lowerShooterID = 6;
+public static final int upperShooterID = 7;
+public static final int IntakeLimiterSwitch = 7;
+  
+  public static class LimelightConstants{
+    public static final int limelightHeight = 0;
+    public static final double angleOffset = 0;
+   
+    public static final double kp = 0;
+    public static final double DriveSpeed = 0;
+
+
+    public static final double[] targetHeights = {0, 53.375, 53.375, 58.125, 58.125, 53.375, 53.375, 58.125, 58.125, 53.375, 53.375, 52.75, 52.75, 52.75, 52.75, 52.75, 52.75};
+    public static final double[] targetDistence = {0, 100, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  }
   public static class MotorConstants {
     public static final double ExteriorShooterSpeed = 1.0;
     public static final double InteriorShooterSpeed = 0.75;
