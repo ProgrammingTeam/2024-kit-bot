@@ -49,8 +49,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     m_DriveSub.setDefaultCommand(new DriveCom(m_DriveSub, m_driverController));
     m_ShooterSub.setDefaultCommand(new ShootCmd(m_ShooterSub, ShootModes.DONOTHING));
-    
-  
+
     autoChooser.setDefaultOption("Nothing", AutoSelector.DoNothing);
     autoChooser.addOption("Shoot n Drive", AutoSelector.ShootDriveAuto);
     autoChooser.addOption("Driving Back", AutoSelector.BackAuto);
@@ -91,15 +90,15 @@ public class RobotContainer {
     switch (autoChooser.getSelected()) {
       case ShootDriveAuto:
         return new ShootDriveAuto(m_DriveSub, m_ShooterSub);
-      
+
       case BackAuto:
         return new BackAutoDrive(m_DriveSub, m_ShooterSub);
-      
+
       case DoNothing:
         return new DoNothing();
       default:
         return new DoNothing();
     }
-    
+
   }
 }

@@ -19,6 +19,7 @@ public class ShootDriveAuto extends SequentialCommandGroup {
   public ShootDriveAuto(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
 
     addCommands(
+
     Commands.race(
       new ShootCmd(m_ShooterSub, ShootModes.SpinUp),
       Commands.waitSeconds(1)),
