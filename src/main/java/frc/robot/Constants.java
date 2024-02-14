@@ -29,6 +29,7 @@ public static final int RRMotorID = 5;
 public static final int lowerShooterID = 6;
 public static final int upperShooterID = 7;
 public static final int IntakeLimiterSwitch = 7;
+
   
   public static class LimelightConstants{
     public static final int limelightHeight = 0;
@@ -51,6 +52,6 @@ public static final int IntakeLimiterSwitch = 7;
 
     public static final double GearRatio = 10.71;
     public static final int WheelDiameter = 6;
-    public static final double MotorSpeedControler = 0.3;
+    public static final double MotorSpeedControler = 0.1;
   }
 }

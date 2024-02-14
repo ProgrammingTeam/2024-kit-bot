@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants;
@@ -14,11 +15,12 @@ import frc.robot.subsystems.DriveTrain;
 public class DriveCom extends Command {
   private final DriveTrain m_Drive;
   private final CommandXboxController m_xbox;
-
+  private DifferentialDrive differentialDrive;
   /** Creates a new DriveCom. */
   public DriveCom(DriveTrain drive, CommandXboxController xboxController) {
     m_Drive = drive;
     m_xbox = xboxController;
+    
     addRequirements(drive);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -26,17 +28,15 @@ public class DriveCom extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    differentialDrive = m_Drive.getDifferentialDrive();
     m_Drive.setMotors(0, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Drive.setMotors(
-        (Math.signum(-m_xbox.getRawAxis(1)) * Constants.MotorConstants.MotorSpeedControler
-            * (-m_xbox.getRawAxis(1) * -m_xbox.getRawAxis(1))),
-        (Math.signum(-m_xbox.getRawAxis(5)) * Constants.MotorConstants.MotorSpeedControler
-            * (-m_xbox.getRawAxis(5) * -m_xbox.getRawAxis(5))));
+    differentialDrive.curvatureDrive(-m_xbox.getRawAxis(1) * Constants.MotorConstants.MotorSpeedControler,
+       -m_xbox.getRawAxis(4) * Constants.MotorConstants.MotorSpeedControler, true);
   }
 
   // Called once the command ends or is interrupted.

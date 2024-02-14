@@ -92,7 +92,7 @@ public class RobotContainer {
         return new ShootDriveAuto(m_DriveSub, m_ShooterSub);
 
       case BackAuto:
-        return new BackAutoDrive(m_DriveSub, m_ShooterSub);
+        return new BackAutoDrive(m_DriveSub);
 
       case DoNothing:
         return new DoNothing();

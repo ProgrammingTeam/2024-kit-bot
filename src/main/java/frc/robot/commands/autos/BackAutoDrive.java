@@ -4,19 +4,20 @@
 
 package frc.robot.commands.autos;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDrive;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ShooterSub;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class BackAutoDrive extends SequentialCommandGroup {
   /** Creates a new BackAutoDrive. */
-  public BackAutoDrive(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
+  public BackAutoDrive(DriveTrain m_DriveTrain) {
 
     addCommands(
-        new AutoDrive(m_DriveTrain, 5, true));
+        Commands.waitSeconds(0.1),
+        new AutoDrive(m_DriveTrain, 10, false));
   }
 }
