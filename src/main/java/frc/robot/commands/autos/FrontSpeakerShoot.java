@@ -15,8 +15,8 @@ import frc.robot.subsystems.ShooterSub;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ShootDriveAuto extends SequentialCommandGroup {
-  public ShootDriveAuto(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
+public class FrontSpeakerShoot extends SequentialCommandGroup {
+  public FrontSpeakerShoot(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
 
     addCommands(
 
@@ -26,7 +26,7 @@ public class ShootDriveAuto extends SequentialCommandGroup {
     Commands.race(
       new ShootCmd(m_ShooterSub, ShootModes.Shoot),
       Commands.waitSeconds(0.5)),
-    new AutoDrive(m_DriveTrain, 9, false)
+    new AutoDrive(m_DriveTrain, 60, false)
     );
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();

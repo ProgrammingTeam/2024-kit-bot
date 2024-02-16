@@ -47,8 +47,8 @@ public static final int IntakeLimiterSwitch = 7;
     public static final double InteriorShooterSpeed = 0.75;
     public static final double IntakeShooterSpeed = 0.20;
 
-    public static final double LeftAutoSpeed = 0.07;
-    public static final double RightAutoSpeed = 0.07;
+    public static final double LeftAutoSpeed = 0.15;
+    public static final double RightAutoSpeed = 0.15;
 
     public static final double GearRatio = 10.71;
     public static final int WheelDiameter = 6;

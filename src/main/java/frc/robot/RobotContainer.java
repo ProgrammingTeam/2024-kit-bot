@@ -51,7 +51,8 @@ public class RobotContainer {
     m_ShooterSub.setDefaultCommand(new ShootCmd(m_ShooterSub, ShootModes.DONOTHING));
 
     autoChooser.setDefaultOption("Nothing", AutoSelector.DoNothing);
-    autoChooser.addOption("Shoot n Drive", AutoSelector.ShootDriveAuto);
+autoChooser.addOption("Front shoot", AutoSelector.FrontSpeakerShoot);
+    autoChooser.addOption("Sourse shoot", AutoSelector.SourseSpeakerShoot);
     autoChooser.addOption("Driving Back", AutoSelector.BackAuto);
     SmartDashboard.putData(autoChooser);
     configureBindings();
@@ -60,7 +61,8 @@ public class RobotContainer {
   /**
    * Use this method to define your trigger->command mappings. Triggers can be
    * created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with
+   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor 
+   * with
    * an arbitrary
    * predicate, or via the named factories in {@link
    * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for
@@ -88,8 +90,11 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     switch (autoChooser.getSelected()) {
-      case ShootDriveAuto:
-        return new ShootDriveAuto(m_DriveSub, m_ShooterSub);
+      case FrontSpeakerShoot:
+        return new FrontSpeakerShoot(m_DriveSub, m_ShooterSub);
+
+      case SourseSpeakerShoot:
+        return new SourseSpeakerShoot(m_DriveSub, m_ShooterSub);
 
       case BackAuto:
         return new BackAutoDrive(m_DriveSub);
