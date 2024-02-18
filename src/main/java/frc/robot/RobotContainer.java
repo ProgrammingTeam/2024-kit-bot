@@ -54,6 +54,7 @@ public class RobotContainer {
     autoChooser.addOption("Front shoot", AutoSelector.FrontSpeakerShoot);
     autoChooser.addOption("Sourse shoot", AutoSelector.SourseSpeakerShoot);
     autoChooser.addOption("Driving Back", AutoSelector.BackAuto);
+    autoChooser.addOption("Driving Forward", AutoSelector.ForwardAuto);
     SmartDashboard.putData(autoChooser);
     configureBindings();
   }
@@ -100,6 +101,9 @@ public class RobotContainer {
 
       case BackAuto:
         return new BackAutoDrive(m_DriveSub);
+
+      case ForwardAuto:
+        return new ForwardAutoDrive(m_DriveSub);
 
       case DoNothing:
         return new DoNothing();
