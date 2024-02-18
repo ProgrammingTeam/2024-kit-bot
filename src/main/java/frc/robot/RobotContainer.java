@@ -8,17 +8,16 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ShootCmd;
 import frc.robot.commands.autos.*;
 import frc.robot.commands.DriveCom;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LimelightDriveCom;
 import frc.robot.commands.LineUpCom;
 import frc.robot.commands.ShootCmd.ShootModes;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimelightSub;
 import frc.robot.subsystems.ShooterSub;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -33,7 +32,6 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveTrain m_DriveSub = new DriveTrain();
   private final ShooterSub m_ShooterSub = new ShooterSub();
   private final LimelightSub m_LimelightSub = new LimelightSub();
@@ -41,17 +39,19 @@ public class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(
       OperatorConstants.kDriverControllerPort);
+  private final CommandJoystick lJoystick = new CommandJoystick(OperatorConstants.LJoystickID);
+  private final CommandJoystick rJoystick = new CommandJoystick(OperatorConstants.RJoystickID);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the trigger bindings
-    m_DriveSub.setDefaultCommand(new DriveCom(m_DriveSub, m_driverController));
+    m_DriveSub.setDefaultCommand(new DriveCom(m_DriveSub, lJoystick, rJoystick));
     m_ShooterSub.setDefaultCommand(new ShootCmd(m_ShooterSub, ShootModes.DONOTHING));
 
     autoChooser.setDefaultOption("Nothing", AutoSelector.DoNothing);
-autoChooser.addOption("Front shoot", AutoSelector.FrontSpeakerShoot);
+    autoChooser.addOption("Front shoot", AutoSelector.FrontSpeakerShoot);
     autoChooser.addOption("Sourse shoot", AutoSelector.SourseSpeakerShoot);
     autoChooser.addOption("Driving Back", AutoSelector.BackAuto);
     SmartDashboard.putData(autoChooser);
@@ -77,9 +77,11 @@ autoChooser.addOption("Front shoot", AutoSelector.FrontSpeakerShoot);
     m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
     m_driverController.a().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
     m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
-    m_driverController.x().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.AmpShot));
-    m_driverController.button(1).whileTrue(new LimelightDriveCom(m_DriveSub, m_LimelightSub));
-    m_driverController.button(1).whileTrue(new LineUpCom(m_DriveSub, m_LimelightSub));
+    rJoystick.button(1).whileTrue(new LimelightDriveCom(m_DriveSub, m_LimelightSub));
+    lJoystick.button(1).whileTrue(new LineUpCom(m_DriveSub, m_LimelightSub));
+    lJoystick.button(3).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
+    lJoystick.button(0).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
+    rJoystick.button(2).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
   }
 
   /**
