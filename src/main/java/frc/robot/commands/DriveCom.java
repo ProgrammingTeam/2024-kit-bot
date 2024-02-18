@@ -35,8 +35,8 @@ public class DriveCom extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    differentialDrive.curvatureDrive(-m_LeftJoystick.getRawAxis(1) * Constants.MotorConstants.MotorSpeedControler,
-       -m_RightJoystick.getRawAxis(4) * Constants.MotorConstants.MotorSpeedControler, true);
+    differentialDrive.curvatureDrive(-m_LeftJoystick.getRawAxis(1) * ((-m_RightJoystick.getRawAxis(3) + 1) / 2),
+       -m_RightJoystick.getRawAxis(0) * ((-m_RightJoystick.getRawAxis(3) + 1) / 2), true);
   }
 
   // Called once the command ends or is interrupted.

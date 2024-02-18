@@ -38,7 +38,7 @@ public class LimelightSub extends SubsystemBase {
 
     if (TidValue >= 1 && TidValue <= 16) {
       opposite = Constants.LimelightConstants.targetHeights[TidValue] - Constants.LimelightConstants.limelightHeight;
-      distenceFromTarget = opposite / Math.tan(Math.toRadians(LimeTY.getDouble(0) + Constants.LimelightConstants.angleOffset));
+      distenceFromTarget = (opposite / Math.tan(Math.toRadians(LimeTY.getDouble(0) + Constants.LimelightConstants.angleOffset)) - Constants.LimelightConstants.LimeDistFromFront);
     }
 
     SmartDashboard.putNumber("Lime TX value", TxValue);

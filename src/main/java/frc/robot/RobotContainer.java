@@ -77,11 +77,11 @@ public class RobotContainer {
     m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
     m_driverController.a().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
     m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
-    rJoystick.button(1).whileTrue(new LimelightDriveCom(m_DriveSub, m_LimelightSub));
-    lJoystick.button(1).whileTrue(new LineUpCom(m_DriveSub, m_LimelightSub));
-    lJoystick.button(3).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
-    lJoystick.button(0).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
-    rJoystick.button(2).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
+    rJoystick.button(2).whileTrue(new LimelightDriveCom(m_DriveSub, m_LimelightSub));
+    lJoystick.button(3).whileTrue(new LineUpCom(m_DriveSub, m_LimelightSub));
+    lJoystick.button(2).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
+    lJoystick.button(1).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
+    rJoystick.button(1).whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
   }
 
   /**
