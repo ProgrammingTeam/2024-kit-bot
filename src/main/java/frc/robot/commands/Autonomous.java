@@ -16,9 +16,9 @@ import frc.robot.subsystems.ShooterSub;
 public class Autonomous extends SequentialCommandGroup {
   public Autonomous(DriveTrain m_DriveTrain, ShooterSub m_ShooterSub) {
 
-    addCommands(new ShootCmd(m_ShooterSub, ShootModes.SpinUp),
+    addCommands(new ShootCmd(m_ShooterSub, ShootModes.SpinUpSpeakerShot),
     Commands.waitSeconds(3),
-    new ShootCmd(m_ShooterSub, ShootModes.Shoot),
+    new ShootCmd(m_ShooterSub, ShootModes.SpeakerShot),
     Commands.waitSeconds(0.5),
     new AutoDrive(m_DriveTrain, 5, false)
     );

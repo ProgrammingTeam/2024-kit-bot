@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.Constants.MotorConstants;
 import frc.robot.subsystems.ShooterSub;
 
@@ -30,28 +31,30 @@ public class ShootCmd extends Command {
   @Override
   public void execute() {
     switch (ShootSelection) {
-      case Shoot:
-        BottomMotor = MotorConstants.InteriorShooterSpeed;
-        TopMotor = MotorConstants.ExteriorShooterSpeed;
+      case SpeakerShot:
+        BottomMotor = MotorConstants.InteriorShooterSpeedSpeakerShot;
+        TopMotor = MotorConstants.ExteriorShooterSpeedSpeakerShot;
         break;
       case Load:
         BottomMotor = -MotorConstants.IntakeShooterSpeed;
         TopMotor = -MotorConstants.IntakeShooterSpeed;
         break;
-      case SpinUp:
+      case SpinUpSpeakerShot:
         BottomMotor = 0;
-        TopMotor = MotorConstants.ExteriorShooterSpeed;
+        TopMotor = MotorConstants.RampingSpeakerShot;
+        break;
+      case SpinUpAmpShot:
+        BottomMotor = 0;
+        TopMotor = Constants.MotorConstants.RampingAmpShot;
         break;
       case AmpShot:
-      BottomMotor = 0.16;
-      TopMotor = 0.16;
-      break;
-
+        BottomMotor = Constants.MotorConstants.ExteriorShooterSpeedAmpShot;
+        TopMotor = Constants.MotorConstants.InteriorShooterSpeedAmpShot;
+        break;
       case DONOTHING:
         BottomMotor = 0;
         TopMotor = 0;
         break;
-
       default:
         BottomMotor = 0;
         TopMotor = 0;
@@ -73,8 +76,9 @@ public class ShootCmd extends Command {
   }
 
   public enum ShootModes {
-    SpinUp,
-    Shoot,
+    SpinUpSpeakerShot,
+    SpinUpAmpShot,
+    SpeakerShot,
     Load,
     AmpShot,
     DONOTHING;

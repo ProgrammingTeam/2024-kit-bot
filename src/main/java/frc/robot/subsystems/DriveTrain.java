@@ -9,6 +9,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -32,7 +33,7 @@ public class DriveTrain extends SubsystemBase {
     RLMotor.set(leftSpeed);
     RRMotor.set(-rightSpeed);
   }
-
+  
   @Override
   public void periodic() {
     FLEncoderPoll = RLEncoder.getPosition();

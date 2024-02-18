@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -26,15 +28,22 @@ public static final int upperShooterID = 7;
 public static final int IntakeLimiterSwitch = 7;
 
   public static class MotorConstants {
-    public static final double ExteriorShooterSpeed = 1.0;
-    public static final double InteriorShooterSpeed = 0.75;
-    public static final double IntakeShooterSpeed = 0.20;
+    public static final double ExteriorShooterSpeedSpeakerShot = 0.77                                                                                                                                                                                                                                                                                                                                                                                                         5; //Speaker Shooter Variable
+    public static final double ExteriorShooterSpeedAmpShot = 0.25; // Amp Variable Variable
+    public static final double InteriorShooterSpeedSpeakerShot = 0.775; //Speaker Shooter Variable
+    public static final double InteriorShooterSpeedAmpShot = 0.25; // Amp Variable Variable
+    public static final double IntakeShooterSpeed = 0.20; 
+    public static final double RampingSpeakerShot = 0.775; //Ramping Speed for Speaker Shot
+    public static final double RampingAmpShot = 0.25; //Ramping Spead for Amp Shot
+    public static final double RampingVarible = 0.0; //Temporary!!
+    public static final double ExteriorShooterSpeedVariable = 0.0; //Temporary!!
+    public static final double InteriorShooterSpeedVariable = 0.0; //Temporary!!
     
     public static final double LeftAutoSpeed = 0.2;
     public static final double RightAutoSpeed = 0.2;
 
     public static final double GearRatio = 10.71;
     public static final int WheelDiameter = 6;
-    public static final double MotorSpeedControler = 0.3;
+    public static final double MotorSpeedControler = 0.1;
   }
 }

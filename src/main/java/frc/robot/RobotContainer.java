@@ -16,6 +16,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.ShooterSub;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -35,7 +36,6 @@ public class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController = new CommandXboxController(
       OperatorConstants.kDriverControllerPort);
-
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -61,9 +61,9 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Shoot));
+    m_driverController.y().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpeakerShot));
     m_driverController.a().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.Load));
-    m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUp));
+    m_driverController.b().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.SpinUpSpeakerShot));
     m_driverController.x().whileTrue(new ShootCmd(m_ShooterSub, ShootModes.AmpShot));
   }
 
