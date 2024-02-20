@@ -2,6 +2,9 @@ package frc.robot.commands.autos;
 
 public enum AutoSelector {
     BackAuto,
+    ForwardAuto,
     DoNothing,
-    ShootDriveAuto;
+    FrontSpeakerShoot,
+    SourseSpeakerShoot;
+
 }

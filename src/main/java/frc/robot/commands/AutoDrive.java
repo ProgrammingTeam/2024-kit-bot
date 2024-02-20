@@ -5,19 +5,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.MotorConstants;
 import frc.robot.subsystems.DriveTrain;
 
 public class AutoDrive extends Command {
-  DriveTrain DriveSub;
+  private final DriveTrain DriveSub;
   double MaxLeftDis;
   double MaxRightDis;
   double RLPosition;
   boolean MetDistance;
-  boolean ForwardOrBackward;
-  double DriveDistEncoderRotations;
+  private final boolean ForwardOrBackward;
+  private final double DriveDistEncoderRotations;
 
   public AutoDrive(DriveTrain m_DriveTrain, double TotalDistanceIn, boolean Forward) {
     DriveSub = m_DriveTrain;
@@ -32,12 +31,15 @@ public class AutoDrive extends Command {
   public void initialize() {
     DriveSub.resetEncoders();
     DriveSub.setMotors(0, 0);
+    SmartDashboard.putBoolean("auto started", true);
+    MetDistance = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     RLPosition = DriveSub.RLEncoderPoll;
+   
     if (ForwardOrBackward == true) {
       if (DriveDistEncoderRotations <= RLPosition) {
         DriveSub.setMotors(0, 0);
